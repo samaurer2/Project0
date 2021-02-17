@@ -1,0 +1,8 @@
+
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ğ„íùøÿÿÿÿ8øê¶µú.
+|
+java:S1488"_Immediately return this expression instead of assigning it to the temporary variable "clients".(÷º«¡8ßš£¹ú.
+S
+java:S2696"6Make the enclosing method "static" or remove this set.(Ú‰×Ş8‡îÄáú.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯çË
