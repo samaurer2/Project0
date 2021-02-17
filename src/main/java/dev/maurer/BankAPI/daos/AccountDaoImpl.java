@@ -92,6 +92,13 @@ public class AccountDaoImpl implements AccountDAO {
 
     @Override
     public boolean deleteAccount(int clientId, int accountId) {
+        List<Account> accounts = local.get(clientId);
+        for (Account a: accounts) {
+            if (a.getAccountId() == accountId) {
+                accounts.remove(a);
+                return true;
+            }
+        }
         return false;
     }
 }

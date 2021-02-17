@@ -83,4 +83,11 @@ class AccountDaoTest {
         Account newAccount = aDao.getAccount(client.getId(), 2);
         Assertions.assertEquals(42.69, newAccount.getBalance());
     }
+
+    @Test
+    @Order(6)
+    void deleteAccountTest() {
+        Client client = clientDAO.getClient(1);
+        Assertions.assertTrue(aDao.deleteAccount(client.getId(), 5));
+    }
 }
