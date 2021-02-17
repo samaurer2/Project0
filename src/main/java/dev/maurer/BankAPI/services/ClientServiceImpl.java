@@ -33,11 +33,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client updateClient(Client client) {
-        return null;
+        clientDAO.updateClient(client);
+        return client;
     }
 
     @Override
     public boolean deleteClient(int id) {
-        return false;
+        return clientDAO.deleteClient(id);
     }
 }

@@ -50,6 +50,19 @@ public class ClientServiceTests {
     @Test
     @Order(4)
     void deleteClientServiceTest(){
+        Assertions.assertTrue(clientService.deleteClient(3));
+
+    }
+
+    @Test
+    @Order(5)
+    void updateClientServiceTest() {
+        Client client = new Client(4);
+        client.setClientName("New Client");
+
+        clientService.updateClient(client);
+        client = clientService.getClient(4);
+        Assertions.assertEquals("New Client", client.getClientName());
 
     }
 }
