@@ -20,7 +20,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Set<Client> getAll() {
+    public Set<Client> getAllClients() {
         return clientDAO.getAll();
     }
 

@@ -15,7 +15,7 @@ public interface ClientService {
      * Returns all client objects as a set
      * @return all client objects
      */
-    Set<Client> getAll();
+    Set<Client> getAllClients();
 
     /**
      * Returns a client by unique id number or null if none is found

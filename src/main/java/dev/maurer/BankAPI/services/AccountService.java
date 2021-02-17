@@ -1,4 +1,51 @@
 package dev.maurer.BankAPI.services;
 
+import dev.maurer.BankAPI.entitiy.Account;
+
+import java.util.Set;
+
 public interface AccountService {
+
+    /**
+     * Creates a new account
+     * @param accountId unique account id number
+     * @return the newly created account
+     */
+    Account createAccount(Account account);
+
+    /**
+     * Returns all accounts as a set
+     * @return as set of all accounts
+     */
+    Set<Account> getAllAccounts(int clientId);
+
+    /**
+     * Returns a set of accounts whose unique id's satisfy the boolean condition:
+     * accountId>loAccountId && accountId<highAccountId
+     * @param lowAccountId lower bound for range search
+     * @param highAccountId upper bound for range search
+     * @return a set of all accounts satisfying the condition
+     */
+    Set<Account> getRangeAccounts(int clientId, int lowAccountId, int highAccountId);
+
+    /**
+     * Gets adn returns the account with the specified id
+     * @param accountId the unique id of the account
+     * @return the account holding the unique id
+     */
+    Account getAccount(int clientId, int accountId);
+
+    /**
+     * Updates and existing account
+     * @param account the account to be updated
+     * @return the account that was updated
+     */
+    Account updateAccount(int clientId,Account account);
+
+    /**
+     * Deletes the specified account
+     * @param accountId the unique id of the account to be deleted
+     * @return true if deletion is successful, else false
+     */
+    boolean deleteAccount(int clientId, int accountId);
 }

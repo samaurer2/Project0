@@ -43,7 +43,7 @@ public class ClientServiceTests {
         for(int i = 0; i < 5; ++i) {
             clientService.createNewClient(new Client(i));
         }
-        Set<Client> allClients = clientService.getAll();
+        Set<Client> allClients = clientService.getAllClients();
         Assertions.assertTrue(allClients.size() > 5);
     }
 

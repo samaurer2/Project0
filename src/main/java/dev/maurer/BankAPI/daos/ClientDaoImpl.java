@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Stand-in for a remote server
- */
 public class ClientDaoImpl implements ClientDAO {
 
     private static int idMaker = 0;
