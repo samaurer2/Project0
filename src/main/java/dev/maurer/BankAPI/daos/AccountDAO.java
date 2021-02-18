@@ -21,12 +21,12 @@ public interface AccountDAO {
 
     /**
      * Returns a set of accounts whose unique id's satisfy the boolean condition:
-     * accountId>loAccountId && accountId<highAccountId
-     * @param lowAccountId lower bound for range search
-     * @param highAccountId upper bound for range search
+     * balance>loAccountBalance && balance<highAccountBalance
+     * @param lowAccountBalance lower bound for range search
+     * @param highAccountBalance upper bound for range search
      * @return a set of all accounts satisfying the condition
      */
-    Set<Account> getRangeAccounts(int clientId, int lowAccountId, int highAccountId);
+    Set<Account> getRangeAccounts(int clientId, double lowAccountBalance, double highAccountBalance);
 
     /**
      * Gets adn returns the account with the specified id

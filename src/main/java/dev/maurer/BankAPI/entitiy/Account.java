@@ -6,6 +6,12 @@ public class Account {
     private int accountId;
     private double balance;
 
+    public Account(int clientId, int accountId, double balance) {
+        this.clientId = clientId;
+        this.accountId = accountId;
+        this.balance = balance;
+    }
+
     public Account(int clientId, int accountId) {
             this.clientId = clientId;
             this.accountId = accountId;

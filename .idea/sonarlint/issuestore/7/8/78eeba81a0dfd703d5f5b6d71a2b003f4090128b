@@ -1,16 +1,16 @@
 
-v
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(óù’¢8¾™ğú.
-{
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ı¸Ÿ ıÿÿÿÿ8™¯·éú.
-v
-java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ä¸¢™8ç«òğú.
-v
-java:S22937"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ä¸¢™8¥²Èñú.
-H
-java:S11683"+Return an empty collection instead of null.(¥¹ï8¦ŠÂñú.
-H
-java:S1168%"+Return an empty collection instead of null.(¥¹ï8Êüäğú.
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯çË
-X
-java:S2696"6Make the enclosing method "static" or remove this set.(¡µıõüÿÿÿÿ8Ñª¦ğú.
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(óù’¢8¾™ğú.
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ä¸¢™8¥²Èñú.
+F
+java:S1168"+Return an empty collection instead of null.(¥¹ï8ï¯Ö´û.
+V
+java:S2696"6Make the enclosing method "static" or remove this set.(¡µıõüÿÿÿÿ8Ñª¦ğú.
+F
+java:S1168"+Return an empty collection instead of null.(¥¹ï8¦ŠÂñú.
+m	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¯çË
+t
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ä¸¢™8ç«òğú.
+y
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ı¸Ÿ ıÿÿÿÿ8™¯·éú.

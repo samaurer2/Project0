@@ -63,16 +63,9 @@ class AccountDaoTest {
         Assertions.assertEquals(4, account.getAccountId());
     }
 
-    @Test
-    @Order(4)
-    void getRangeAccountsTest() {
-        Client client = clientDAO.getClient(1);
-        Set<Account> accountSet = aDao.getRangeAccounts(client.getId(),2, 5);
-        Assertions.assertEquals(2, accountSet.size());
-    }
 
     @Test
-    @Order(5)
+    @Order(4)
     void updateAccountTest() {
         Client client = clientDAO.getClient(1);
         Account account = aDao.getAccount(client.getId(), 2);
@@ -82,6 +75,14 @@ class AccountDaoTest {
 
         Account newAccount = aDao.getAccount(client.getId(), 2);
         Assertions.assertEquals(42.69, newAccount.getBalance());
+    }
+
+    @Test
+    @Order(5)
+    void getRangeAccountsTest() {
+        Client client = clientDAO.getClient(1);
+        Set<Account> accountSet = aDao.getRangeAccounts(client.getId(),20, 50);
+        Assertions.assertEquals(1, accountSet.size());
     }
 
     @Test

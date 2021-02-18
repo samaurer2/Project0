@@ -13,6 +13,7 @@ public class AccountDaoImpl implements AccountDAO {
         local = new HashMap<Integer, List<Account>>();
     }
 
+
     @Override
     public Account createAccount(Account account) {
         int clientId = account.getClientId();
@@ -45,7 +46,7 @@ public class AccountDaoImpl implements AccountDAO {
     }
 
     @Override
-    public Set<Account> getRangeAccounts(int clientId, int lowAccountId, int highAccountId) {
+    public Set<Account> getRangeAccounts(int clientId, double lowAccountBalance, double highAccountBalance) {
         List<Account> accounts;
         if (!local.containsKey(clientId))
             return null;
@@ -54,7 +55,7 @@ public class AccountDaoImpl implements AccountDAO {
 
         Set<Account> accountSet = new HashSet<Account>();
         for (Account a: accounts) {
-            if ((a.getAccountId() > lowAccountId) && (a.getAccountId()<highAccountId))
+            if ((a.getBalance() > lowAccountBalance) && (a.getBalance()<highAccountBalance))
                 accountSet.add(a);
         }
         return accountSet;

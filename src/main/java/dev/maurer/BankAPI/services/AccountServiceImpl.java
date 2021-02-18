@@ -24,8 +24,8 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public Set<Account> getRangeAccounts(int clientId, int lowAccountId, int highAccountId) {
-        return accountDAO.getRangeAccounts(clientId, lowAccountId, highAccountId);
+    public Set<Account> getRangeAccounts(int clientId, double lowAccountBalance, double highAccountBalance) {
+        return accountDAO.getRangeAccounts(clientId, lowAccountBalance, highAccountBalance);
     }
 
     @Override
