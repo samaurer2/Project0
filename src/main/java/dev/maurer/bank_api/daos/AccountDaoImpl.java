@@ -7,47 +7,45 @@ import java.util.*;
 public class AccountDaoImpl implements AccountDAO {
 
     private static int idMaker = 0;
-    private HashMap<Integer, List<Account>> local;
+    private HashMap<Integer, Set<Account>> local;
+    private ClientDAO clientDAO;
 
-    public AccountDaoImpl() {
-        local = new HashMap<Integer, List<Account>>();
+    public AccountDaoImpl(ClientDAO clientDAO) {
+        local = new HashMap<Integer, Set<Account>>();
+        this.clientDAO = clientDAO;
     }
 
 
     @Override
     public Account createAccount(Account account) {
         int clientId = account.getClientId();
-        List<Account> accountList;
+        Set<Account> accountSet;
 
         if (!local.containsKey(clientId)) {
-            accountList = new ArrayList<Account>();
-            local.put(clientId, accountList);
+            accountSet = new HashSet<Account>();
+            local.put(clientId, accountSet);
         }
         else {
-            accountList = local.get(clientId);
+            accountSet = local.get(clientId);
         }
         account.setAccountId(++idMaker);
-        accountList.add(account);
+        accountSet.add(account);
         return account;
     }
 
     @Override
     public Set<Account> getAllAccounts(int clientId) {
-        List<Account> allAccounts;
+        Set<Account> allAccounts;
         if (!local.containsKey(clientId))
             return null;
         else
             allAccounts = local.get(clientId);
-
-        Set<Account> accountSet = new HashSet<Account>();
-        accountSet.addAll(allAccounts);
-
-        return accountSet;
+        return allAccounts;
     }
 
     @Override
     public Set<Account> getRangeAccounts(int clientId, double lowAccountBalance, double highAccountBalance) {
-        List<Account> accounts;
+        Set<Account> accounts;
         if (!local.containsKey(clientId))
             return null;
         else
@@ -63,7 +61,7 @@ public class AccountDaoImpl implements AccountDAO {
 
     @Override
     public Account getAccount(int clientId, int accountId) {
-        List<Account> accounts;
+        Set<Account> accounts;
         if (!local.containsKey(clientId))
             return null;
         else
@@ -79,7 +77,7 @@ public class AccountDaoImpl implements AccountDAO {
 
     @Override
     public Account updateAccount(int clientId, Account account) {
-        List<Account> accounts = local.get(clientId);
+        Set<Account> accounts = local.get(clientId);
         for (Account a: accounts) {
             if(a.getAccountId() == account.getAccountId()) {
                 accounts.remove(a);
@@ -93,7 +91,7 @@ public class AccountDaoImpl implements AccountDAO {
 
     @Override
     public boolean deleteAccount(int clientId, int accountId) {
-        List<Account> accounts = local.get(clientId);
+        Set<Account> accounts = local.get(clientId);
         for (Account a: accounts) {
             if (a.getAccountId() == accountId) {
                 accounts.remove(a);

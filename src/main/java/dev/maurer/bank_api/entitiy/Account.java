@@ -6,20 +6,17 @@ public class Account {
     private int accountId;
     private double balance;
 
-    public Account(int clientId, int accountId, double balance) {
+    public Account() {
+    }
+    public Account(int clientId) {
         this.clientId = clientId;
-        this.accountId = accountId;
-        this.balance = balance;
     }
-
-    public Account(int clientId, int accountId) {
-            this.clientId = clientId;
-            this.accountId = accountId;
-            this.balance = 0;
-    }
-
     public int getClientId() {
         return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public int getAccountId() {

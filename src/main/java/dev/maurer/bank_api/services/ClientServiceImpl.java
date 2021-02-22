@@ -4,7 +4,6 @@ import dev.maurer.BankAPI.daos.ClientDAO;
 import dev.maurer.BankAPI.entitiy.Client;
 import dev.maurer.BankAPI.exceptions.ClientNotFoundException;
 
-import java.sql.SQLException;
 import java.util.Set;
 
 public class ClientServiceImpl implements ClientService {

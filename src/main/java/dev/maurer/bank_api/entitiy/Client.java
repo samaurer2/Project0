@@ -6,14 +6,7 @@ public class Client {
     private int id;
     private String clientName;
 
-    public Client(int id, String clientName){
-        this.clientName = clientName;
-        this.id = id;
-    }
-
-    public Client(int id) {
-        this.id = id;
-    }
+    public Client(){}
 
     public int getId() {
         return id;

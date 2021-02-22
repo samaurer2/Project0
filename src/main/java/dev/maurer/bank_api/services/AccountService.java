@@ -14,8 +14,9 @@ public interface AccountService {
      * Creates a new account
      * @param account unique account
      * @return the newly created account
+     * @throws ClientNotFoundException the client for this account was not found
      * */
-    Account createAccount(Account account);
+    Account createAccount(Account account) throws ClientNotFoundException;
 
     /**
      * Returns all accounts as a set
