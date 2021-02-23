@@ -1,0 +1,71 @@
+package dev.maurer.BankApi.DaoTests;
+
+import dev.maurer.bank_api.daos.ClientDAO;
+import dev.maurer.bank_api.daos.PostgresDAO;
+import dev.maurer.bank_api.entitiy.Client;
+import org.junit.jupiter.api.*;
+
+import java.util.Set;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class PostgresDaoTests {
+
+
+    static ClientDAO bdao;
+    static Client testClient;
+
+    @BeforeAll
+    public static void setUp() {
+        bdao = new PostgresDAO();
+    }
+
+    @Test
+    @Order(1)
+    void createNewClientTest() {
+        Client client = new Client();
+        testClient = client;
+        bdao.createNewClient(client);
+        Assertions.assertNotEquals(0, client.getId());
+    }
+
+    @Test
+    @Order(2)
+    void getAllClientsTest() {
+        Client client;
+        for (int i = 0; i < 5; i++) {
+            client = new Client();
+            bdao.createNewClient(client);
+        }
+        Set<Client> clients = bdao.getAll();
+        Assertions.assertTrue(clients.size() > 5);
+
+    }
+
+    @Test
+    @Order(3)
+    void getClientTest() {
+        Client client = bdao.getClient(2);
+        Assertions.assertTrue(client.getId() == 2);
+    }
+
+    @Test
+    @Order(4)
+    void deleteClientTest() {
+        int id = testClient.getId();
+        Assertions.assertTrue(bdao.deleteClient(id));
+    }
+
+    @Test
+    @Order(5)
+    void updateClientTest() {
+        Client client = bdao.getClient(3);
+        client.setClientName("New Company");
+        bdao.updateClient(client);
+
+        Client newClient = bdao.getClient(3);
+
+        Assertions.assertEquals("New Company", newClient.getClientName());
+    }
+
+
+}
