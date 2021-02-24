@@ -1,8 +1,8 @@
 package dev.maurer.BankApi.DaoTests;
 
-import dev.maurer.BankAPI.daos.ClientDAO;
-import dev.maurer.BankAPI.daos.ClientDaoImpl;
-import dev.maurer.BankAPI.entitiy.Client;
+import dev.maurer.bank_api.daos.ClientDAO;
+import dev.maurer.bank_api.daos.ClientDaoImpl;
+import dev.maurer.bank_api.entitiy.Client;
 import org.junit.jupiter.api.*;
 
 import java.util.Set;
@@ -20,7 +20,7 @@ class ClientDoaTest {
     @Test
     @Order(1)
     void createNewClientTest() {
-        Client client = new Client(0);
+        Client client = new Client();
         testClient = client;
         bdao.createNewClient(client);
         Assertions.assertNotEquals(0,client.getId());
@@ -31,7 +31,7 @@ class ClientDoaTest {
     void getAllClientsTest() {
         Client client;
         for (int i = 0; i < 5; i++) {
-            client = new Client(0);
+            client = new Client();
             bdao.createNewClient(client);
         }
         Set<Client> clients = bdao.getAll();

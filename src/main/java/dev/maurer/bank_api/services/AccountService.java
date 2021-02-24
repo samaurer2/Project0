@@ -1,11 +1,10 @@
-package dev.maurer.BankAPI.services;
+package dev.maurer.bank_api.services;
 
-import dev.maurer.BankAPI.entitiy.Account;
-import dev.maurer.BankAPI.exceptions.AccountNotFoundException;
-import dev.maurer.BankAPI.exceptions.BadArgumentException;
-import dev.maurer.BankAPI.exceptions.ClientNotFoundException;
+import dev.maurer.bank_api.entitiy.Account;
+import dev.maurer.bank_api.exceptions.AccountNotFoundException;
+import dev.maurer.bank_api.exceptions.BadArgumentException;
+import dev.maurer.bank_api.exceptions.ClientNotFoundException;
 
-import java.sql.SQLException;
 import java.util.Set;
 
 public interface AccountService {

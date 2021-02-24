@@ -1,4 +1,4 @@
-package dev.maurer.BankAPI.exceptions;
+package dev.maurer.bank_api.exceptions;
 
 public class BadArgumentException extends Exception{
 

@@ -1,8 +1,8 @@
-package dev.maurer.BankAPI.services;
+package dev.maurer.bank_api.services;
 
-import dev.maurer.BankAPI.daos.ClientDAO;
-import dev.maurer.BankAPI.entitiy.Client;
-import dev.maurer.BankAPI.exceptions.ClientNotFoundException;
+import dev.maurer.bank_api.daos.ClientDAO;
+import dev.maurer.bank_api.entitiy.Client;
+import dev.maurer.bank_api.exceptions.ClientNotFoundException;
 
 import java.util.Set;
 
@@ -21,7 +21,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     /**
-     *
      * @return IMPORTANT CAN RETURN NULL
      */
     @Override
@@ -31,13 +30,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client getClient(int id) throws ClientNotFoundException {
-        if(clientDAO.getClient(id) == null)
+        if (clientDAO.getClient(id) == null)
             throw new ClientNotFoundException(id);
         return clientDAO.getClient(id);
     }
 
     @Override
-    public Client updateClient(Client client) throws ClientNotFoundException{
+    public Client updateClient(Client client) throws ClientNotFoundException {
         if (clientDAO.updateClient(client) == null)
             throw new ClientNotFoundException(client.getId());
 
@@ -45,9 +44,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public boolean deleteClient(int id) throws ClientNotFoundException {
+    public boolean deleteClient(int id) {
         if (clientDAO.deleteClient(id))
             return true;
-        throw new ClientNotFoundException(id);
+        return false;
     }
 }

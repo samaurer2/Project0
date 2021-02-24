@@ -1,9 +1,8 @@
-package dev.maurer.BankAPI.services;
+package dev.maurer.bank_api.services;
 
-import dev.maurer.BankAPI.entitiy.Client;
-import dev.maurer.BankAPI.exceptions.ClientNotFoundException;
+import dev.maurer.bank_api.entitiy.Client;
+import dev.maurer.bank_api.exceptions.ClientNotFoundException;
 
-import java.sql.SQLException;
 import java.util.Set;
 
 public interface ClientService {
@@ -39,5 +38,5 @@ public interface ClientService {
      * @param id the unique client id
      * @return true if deletion was successful, else false
      */
-    boolean deleteClient(int id) throws ClientNotFoundException;
+    boolean deleteClient(int id);
 }

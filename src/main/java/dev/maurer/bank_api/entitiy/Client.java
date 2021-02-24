@@ -1,12 +1,11 @@
-package dev.maurer.BankAPI.entitiy;
-
-import java.util.Set;
+package dev.maurer.bank_api.entitiy;
 
 public class Client {
     private int id;
     private String clientName;
 
-    public Client(){}
+    public Client(
+    ){}
 
     public int getId() {
         return id;

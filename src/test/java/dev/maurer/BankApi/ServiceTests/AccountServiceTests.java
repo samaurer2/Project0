@@ -1,35 +1,38 @@
 package dev.maurer.BankApi.ServiceTests;
 
-import dev.maurer.BankAPI.daos.AccountDAO;
-import dev.maurer.BankAPI.daos.AccountDaoImpl;
-import dev.maurer.BankAPI.entitiy.Account;
-import dev.maurer.BankAPI.entitiy.Client;
-import dev.maurer.BankAPI.services.AccountService;
-import dev.maurer.BankAPI.services.AccountServiceImpl;
+import dev.maurer.bank_api.daos.*;
+import dev.maurer.bank_api.entitiy.Account;
+import dev.maurer.bank_api.entitiy.Client;
+import dev.maurer.bank_api.services.AccountService;
+import dev.maurer.bank_api.services.AccountServiceImpl;
 import org.junit.jupiter.api.*;
 
-import java.sql.SQLException;
 import java.util.Set;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AccountServiceTests {
 
-
+    static ClientDAO clientDAO;
     static AccountDAO accountDAO;
     static AccountService accountService;
     static Client defaultClient;
 
     @BeforeAll
     static void setUp() {
-        accountService = new AccountServiceImpl(new AccountDaoImpl());
-        defaultClient = new Client(1);
+
+        clientDAO = new PostgresClientDAO();
+        accountDAO = new PostgresAccountDAO(clientDAO);
+        accountService = new AccountServiceImpl(clientDAO, accountDAO);
+        defaultClient = new Client();
+        clientDAO.createNewClient(defaultClient);
     }
 
     @Test
     @Order(1)
     void createAccountServiceTest() {
         try {
-            Account account = new Account(defaultClient.getId(), 0);
+            Account account = new Account();
+            account.setClientId(defaultClient.getId());
             accountService.createAccount(account);
             Assertions.assertNotEquals(0, account.getAccountId());
         } catch (Exception e) {
@@ -44,13 +47,11 @@ class AccountServiceTests {
         try {
             Account account;
             for (int i = 0; i < 5; ++i) {
-                account = new Account(defaultClient.getId(), 0);
+                account = new Account();
+                account.setClientId(defaultClient.getId());
                 accountService.createAccount(account);
             }
             Set<Account> allAccounts = accountService.getAllAccounts(defaultClient.getId());
-            for (Account a : allAccounts) {
-                System.out.println(a);
-            }
             Assertions.assertTrue(allAccounts.size() > 5);
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,10 +73,12 @@ class AccountServiceTests {
     @Order(4)
     void updateAccountServiceTest() {
         try {
-            Account account = new Account(defaultClient.getId(), 2);
-
+            Account account = new Account();
+            account.setClientId(defaultClient.getId());
+            account.setAccountId(2);
             account.setBalance(420.69);
-            accountService.updateAccount(account.getClientId(), account);
+
+            accountService.updateAccount(defaultClient.getId(), account);
 
             Account newAccount = accountService.getAccount(defaultClient.getId(), 2);
             Assertions.assertEquals(420.69, newAccount.getBalance());

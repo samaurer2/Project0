@@ -1,6 +1,6 @@
-package dev.maurer.BankAPI.daos;
+package dev.maurer.bank_api.daos;
 
-import dev.maurer.BankAPI.entitiy.Client;
+import dev.maurer.bank_api.entitiy.Client;
 
 import java.util.HashMap;
 import java.util.HashSet;

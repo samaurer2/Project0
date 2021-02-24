@@ -1,26 +1,25 @@
-package dev.maurer.BankAPI.app;
+package dev.maurer.bank_api.app;
 
-import dev.maurer.BankAPI.controllers.AccountController;
-import dev.maurer.BankAPI.controllers.ClientController;
-import dev.maurer.BankAPI.daos.AccountDAO;
-import dev.maurer.BankAPI.daos.AccountDaoImpl;
-import dev.maurer.BankAPI.daos.ClientDAO;
-import dev.maurer.BankAPI.daos.ClientDaoImpl;
-import dev.maurer.BankAPI.services.AccountService;
-import dev.maurer.BankAPI.services.AccountServiceImpl;
-import dev.maurer.BankAPI.services.ClientService;
-import dev.maurer.BankAPI.services.ClientServiceImpl;
+import dev.maurer.bank_api.controllers.AccountController;
+import dev.maurer.bank_api.controllers.ClientController;
+import dev.maurer.bank_api.daos.*;
+import dev.maurer.bank_api.services.AccountService;
+import dev.maurer.bank_api.services.AccountServiceImpl;
+import dev.maurer.bank_api.services.ClientService;
+import dev.maurer.bank_api.services.ClientServiceImpl;
 import io.javalin.Javalin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class App {
     public static void main(String[] args) {
         Javalin app = Javalin.create();
 
-        ClientDAO clientDAO = new ClientDaoImpl();
+        ClientDAO clientDAO = new PostgresClientDAO();
         ClientService clientService = new ClientServiceImpl(clientDAO);
         ClientController clientController = new ClientController(clientService);
 
-        AccountDAO accountDAO = new AccountDaoImpl(clientDAO);
+        AccountDAO accountDAO = new PostgresAccountDAO(clientDAO);
         AccountService accountService = new AccountServiceImpl(clientDAO, accountDAO);
         AccountController  accountController = new AccountController(accountService);
 
@@ -33,7 +32,6 @@ public class App {
         app.post("/clients/:id/accounts", accountController.createAccountHandler);
         app.get("/clients/:id/accounts",accountController.getAllAccountsOfClientHandler);
         app.get("/clients/:cid/accounts/:aid", accountController.getAccountHandler);
-        app.get("/clients/:id/accounts?amountLessThan=:lowerBound&amountGreaterThan=:upperBound", accountController.getRangeAccountsHandler);
         app.put("/clients/:cid/accounts/:aid", accountController.updateAccountHandler);
         app.delete("/clients/:cid/accounts/:aid", accountController.deleteAccountHandler);
 

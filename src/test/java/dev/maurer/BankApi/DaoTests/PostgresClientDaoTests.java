@@ -1,14 +1,14 @@
 package dev.maurer.BankApi.DaoTests;
 
 import dev.maurer.bank_api.daos.ClientDAO;
-import dev.maurer.bank_api.daos.PostgresDAO;
+import dev.maurer.bank_api.daos.PostgresClientDAO;
 import dev.maurer.bank_api.entitiy.Client;
 import org.junit.jupiter.api.*;
 
 import java.util.Set;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class PostgresDaoTests {
+public class PostgresClientDaoTests {
 
 
     static ClientDAO bdao;
@@ -16,7 +16,7 @@ public class PostgresDaoTests {
 
     @BeforeAll
     public static void setUp() {
-        bdao = new PostgresDAO();
+        bdao = new PostgresClientDAO();
     }
 
     @Test

@@ -1,6 +1,6 @@
-package dev.maurer.BankAPI.daos;
+package dev.maurer.bank_api.daos;
 
-import dev.maurer.BankAPI.entitiy.Account;
+import dev.maurer.bank_api.entitiy.Account;
 
 import java.util.Set;
 

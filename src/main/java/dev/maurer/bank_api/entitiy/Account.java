@@ -1,16 +1,15 @@
-package dev.maurer.BankAPI.entitiy;
+package dev.maurer.bank_api.entitiy;
 
 public class Account {
 
     private int clientId;
     private int accountId;
     private double balance;
+    private String accountName;
 
     public Account() {
     }
-    public Account(int clientId) {
-        this.clientId = clientId;
-    }
+
     public int getClientId() {
         return clientId;
     }
@@ -33,6 +32,14 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     @Override

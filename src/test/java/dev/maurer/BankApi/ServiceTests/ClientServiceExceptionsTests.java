@@ -1,16 +1,13 @@
 package dev.maurer.BankApi.ServiceTests;
 
-import dev.maurer.BankAPI.daos.ClientDAO;
-import dev.maurer.BankAPI.daos.ClientDaoImpl;
-import dev.maurer.BankAPI.entitiy.Client;
-import dev.maurer.BankAPI.exceptions.ClientNotFoundException;
-import dev.maurer.BankAPI.services.ClientService;
-import dev.maurer.BankAPI.services.ClientServiceImpl;
+import dev.maurer.bank_api.daos.ClientDAO;
+import dev.maurer.bank_api.daos.ClientDaoImpl;
+import dev.maurer.bank_api.daos.PostgresClientDAO;
+import dev.maurer.bank_api.entitiy.Client;
+import dev.maurer.bank_api.exceptions.ClientNotFoundException;
+import dev.maurer.bank_api.services.ClientService;
+import dev.maurer.bank_api.services.ClientServiceImpl;
 import org.junit.jupiter.api.*;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import java.sql.SQLException;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClientServiceExceptionsTests {
@@ -20,10 +17,10 @@ public class ClientServiceExceptionsTests {
 
     @BeforeAll
     static void setUp() {
-        clientDao = new ClientDaoImpl();
+        clientDao = new PostgresClientDAO();
         clientService = new ClientServiceImpl(clientDao);
         for (int i = 0; i < 10; ++i) {
-            Client client = new Client(0);
+            Client client = new Client();
             clientDao.createNewClient(client);
         }
     }
@@ -36,6 +33,9 @@ public class ClientServiceExceptionsTests {
             Assertions.fail();
         } catch (ClientNotFoundException e) {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assertions.fail();
         }
 
     }
@@ -44,23 +44,16 @@ public class ClientServiceExceptionsTests {
     @Order(2)
     void updateClientExceptionTest() {
         try {
-            Client client = new Client(42);
+            Client client = new Client();
+            client.setId(42);
             clientService.updateClient(client);
             Assertions.fail();
         } catch (ClientNotFoundException e) {
 
-        }
-    }
-
-    @Test
-    @Order(3)
-    void deleteClientExceptionTest() {
-        try {
-            clientService.deleteClient(42);
+        } catch (Exception e) {
+            e.printStackTrace();
             Assertions.fail();
-        } catch (ClientNotFoundException e) {
-
         }
-
     }
+
 }

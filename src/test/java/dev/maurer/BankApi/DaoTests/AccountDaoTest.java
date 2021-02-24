@@ -1,10 +1,10 @@
 package dev.maurer.BankApi.DaoTests;
 
-import dev.maurer.BankAPI.daos.AccountDAO;
-import dev.maurer.BankAPI.daos.AccountDaoImpl;
-import dev.maurer.BankAPI.daos.ClientDAO;
-import dev.maurer.BankAPI.entitiy.Account;
-import dev.maurer.BankAPI.entitiy.Client;
+import dev.maurer.bank_api.daos.AccountDAO;
+import dev.maurer.bank_api.daos.AccountDaoImpl;
+import dev.maurer.bank_api.daos.ClientDAO;
+import dev.maurer.bank_api.entitiy.Account;
+import dev.maurer.bank_api.entitiy.Client;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -22,12 +22,13 @@ class AccountDaoTest {
 
     @BeforeAll
     static void initialize() {
-        aDao = new AccountDaoImpl();
+        aDao = new AccountDaoImpl(clientDAO);
     }
 
     @BeforeEach
     void setUp() {
-        Client c1 = new Client(1);
+        Client c1 = new Client();
+        c1.setId(1);
 
         Mockito.when(clientDAO.getClient(1)).thenReturn(c1);
     }
@@ -36,7 +37,8 @@ class AccountDaoTest {
     @Order(1)
     void createAccountTest() {
         Client client = clientDAO.getClient(1);
-        Account account = new Account(client.getId(), 0);
+        Account account = new Account();
+        account.setClientId(client.getId());
         aDao.createAccount(account);
         Assertions.assertNotEquals(0, account.getAccountId());
     }
@@ -47,7 +49,8 @@ class AccountDaoTest {
 
         Client client = clientDAO.getClient(1);
         for (int i = 0; i < 5; ++i) {
-            Account account = new Account(client.getId(), 0);
+            Account account = new Account();
+            account.setClientId(client.getId());
             aDao.createAccount(account);
         }
         Set<Account> allAccounts = aDao.getAllAccounts(client.getId());

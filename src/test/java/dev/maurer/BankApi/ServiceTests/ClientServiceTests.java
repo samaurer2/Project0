@@ -1,15 +1,14 @@
 package dev.maurer.BankApi.ServiceTests;
 
 
-import dev.maurer.BankAPI.daos.ClientDAO;
-import dev.maurer.BankAPI.daos.ClientDaoImpl;
-import dev.maurer.BankAPI.entitiy.Client;
-import dev.maurer.BankAPI.exceptions.ClientNotFoundException;
-import dev.maurer.BankAPI.services.ClientService;
-import dev.maurer.BankAPI.services.ClientServiceImpl;
+import dev.maurer.bank_api.daos.ClientDAO;
+import dev.maurer.bank_api.daos.ClientDaoImpl;
+import dev.maurer.bank_api.daos.PostgresClientDAO;
+import dev.maurer.bank_api.entitiy.Client;
+import dev.maurer.bank_api.services.ClientService;
+import dev.maurer.bank_api.services.ClientServiceImpl;
 import org.junit.jupiter.api.*;
 
-import java.sql.SQLException;
 import java.util.Set;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -20,7 +19,7 @@ public class ClientServiceTests {
 
     @BeforeAll
     static void setUp() {
-        clientDAO = new ClientDaoImpl();
+        clientDAO = new PostgresClientDAO();
         clientService = new ClientServiceImpl(clientDAO);
     }
 
@@ -28,12 +27,13 @@ public class ClientServiceTests {
     @Test
     @Order(1)
     void createNewClientServiceTest() {
-        Client client = new Client(0);
+        Client client = new Client();
         try {
             clientService.createNewClient(client);
             Assertions.assertNotEquals(0, client.getId());
         } catch (Exception e) {
             e.printStackTrace();
+            Assertions.fail();
         }
     }
 
@@ -55,8 +55,7 @@ public class ClientServiceTests {
     void getAllClientsServiceTest() {
         try {
             for (int i = 0; i < 5; ++i) {
-
-                clientService.createNewClient(new Client(i));
+                clientService.createNewClient(new Client());
             }
             Set<Client> allClients = clientService.getAllClients();
             Assertions.assertTrue(allClients.size() > 5);
@@ -80,7 +79,8 @@ public class ClientServiceTests {
     @Test
     @Order(5)
     void updateClientServiceTest() {
-        Client client = new Client(4);
+        Client client = new Client();
+        client.setId(4);
         client.setClientName("New Client");
 
         try {

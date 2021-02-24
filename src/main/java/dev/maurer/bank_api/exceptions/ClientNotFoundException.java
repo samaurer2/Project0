@@ -1,6 +1,4 @@
-package dev.maurer.BankAPI.exceptions;
-
-import java.sql.SQLException;
+package dev.maurer.bank_api.exceptions;
 
 public class ClientNotFoundException extends Exception{
 
