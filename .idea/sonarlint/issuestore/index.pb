@@ -55,8 +55,6 @@ i
 9src/main/java/dev/maurer/bank_api/daos/ClientDaoImpl.java,3\f\3f0367ffe2d9d15aa822e85b571185cf7a7bd5fa
 r
 Bsrc/main/java/dev/maurer/bank_api/services/AccountServiceImpl.java,a\6\a6b58088bfcb5b8bc5d28b1df0a8520be82b3535
-z
-Jsrc/main/java/dev/maurer/bank_api/exceptions/AccountNotFoundException.java,b\d\bd2c757196ef9fab75234e5b197e5b53c9d8f5c4
 f
 6src/main/java/dev/maurer/bank_api/entitiy/Account.java,b\6\b604a5beab9b247b10e46da7656d2b11ee8cb472
 ^
@@ -85,5 +83,3 @@ v
 Fsrc/test/java/dev/maurer/BankApi/DaoTests/PostgresAccountDaoTests.java,a\1\a19b9fe5fe7230c9befdb8aeaf8afcd0841bf968
 n
 >src/main/java/dev/maurer/bank_api/daos/PostgresAccountDAO.java,e\9\e9bf86dc5a813cfd574b7255d2fc9baec40b37bf
-<
-src/logs.log,9\a\9addf5f1d51cb2930a881a6a0fb9014656068aa7
