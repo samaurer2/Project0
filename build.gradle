@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id "org.sonarqube" version "3.1.1"
 }
 
 group 'org.example'
@@ -22,12 +21,17 @@ dependencies {
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
 }
 
+test {
+    useJUnitPlatform()
+}
+plugins {
+    id "org.sonarqube" version "3.1.1"
+}
+
 sonarqube {
     properties {
         property "sonar.projectKey", "samaurer2_Project0"
         property "sonar.organization", "samaurer2"
         property "sonar.host.url", "https://sonarcloud.io"
     }
-test {
-    useJUnitPlatform()
 }
