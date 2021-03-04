@@ -1,9 +1,7 @@
 package dev.maurer.bank_api.daos;
 
-import dev.maurer.bank_api.entitiy.Account;
 import dev.maurer.bank_api.entitiy.Client;
 import dev.maurer.bank_api.utilities.ConnectionUtil;
-import org.postgresql.util.PSQLException;
 
 import java.sql.*;
 import java.util.HashSet;
